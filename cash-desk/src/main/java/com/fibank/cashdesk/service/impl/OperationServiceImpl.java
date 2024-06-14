@@ -1,6 +1,7 @@
 package com.fibank.cashdesk.service.impl;
 
 import com.fibank.cashdesk.config.BanknotesDenominationsConfig;
+import com.fibank.cashdesk.dto.CashBalanceCurrencyDTO;
 import com.fibank.cashdesk.dto.CashBalanceDTO;
 import com.fibank.cashdesk.dto.CashOperationDTO;
 import com.fibank.cashdesk.entity.CashBalanceCurrency;
@@ -26,19 +27,15 @@ import java.util.Set;
 @Service
 public class OperationServiceImpl implements OperationService {
 
-    @Value("${api-key}")
-    private String apiKey;
+    private final String apiKey;
+    private final CashBalanceMapper cashBalanceMapper;
+    private final BanknotesDenominationsConfig denominations;
 
-    private CashBalance cashBalance;
-
-    private CashBalanceMapper cashBalanceMapper;
-    private CashOperationMapper cashOperationMapper;
-    private BanknotesDenominationsConfig denominations;
-
-    public OperationServiceImpl(CashBalanceMapper cashBalanceMapper, CashOperationMapper cashOperationMapper, BanknotesDenominationsConfig denominations) {
+    public OperationServiceImpl(CashBalanceMapper cashBalanceMapper, BanknotesDenominationsConfig denominations,
+    @Value("${api-key}") String apikey) {
         this.cashBalanceMapper = cashBalanceMapper;
-        this.cashOperationMapper = cashOperationMapper;
         this.denominations = denominations;
+        this.apiKey = apikey;
     }
 
     @Override
@@ -49,8 +46,6 @@ public class OperationServiceImpl implements OperationService {
     @Override
     public CashBalanceDTO retrieveCashBalance() throws IOException {
         CashBalanceDTO cashBalanceDTO = FileUtilsHelper.readLastBalance();
-        cashBalance = cashBalanceMapper.toCashBalance(cashBalanceDTO);
-
         return cashBalanceDTO;
     }
 
@@ -58,16 +53,16 @@ public class OperationServiceImpl implements OperationService {
     public CashOperationDTO performCashOperation(CashOperationDTO cashOperationDTO) throws IOException {
         CashOperationType operation = cashOperationDTO.getType();
 
-        retrieveCashBalance();
-        performValidations(cashOperationDTO);
+        CashBalanceDTO balanceDTO = retrieveCashBalance();
+        performValidations(cashOperationDTO, balanceDTO);
 
         if (operation.equals(CashOperationType.WITHDRAWAL)) {
-            withdrawCash(cashOperationDTO);
+            withdrawCash(cashOperationDTO, balanceDTO);
         } else if (operation.equals(CashOperationType.DEPOSIT)) {
-            depositCash(cashOperationDTO);
+            depositCash(cashOperationDTO, balanceDTO);
         }
 
-        FileUtilsHelper.writeCashBalance(cashBalanceMapper.toCashBalanceDTO(cashBalance));
+        FileUtilsHelper.writeCashBalance(balanceDTO);
         FileUtilsHelper.writeCashOperation(cashOperationDTO);
 
         return cashOperationDTO;
@@ -81,8 +76,9 @@ public class OperationServiceImpl implements OperationService {
         }
     }
 
-    private void depositCash(CashOperationDTO cashOperationDTO) {
-        CashBalanceCurrency cashBalanceCurrency = cashBalance.getBalance().get(cashOperationDTO.getCurrency());
+
+    private void depositCash(CashOperationDTO cashOperationDTO, CashBalanceDTO balanceDTO) {
+        CashBalanceCurrencyDTO cashBalanceCurrency = balanceDTO.getBalance().get(cashOperationDTO.getCurrency());
 
         BigDecimal totalBalance = cashBalanceCurrency.getTotalBalance();
         for (Map.Entry<Integer, Integer> entry : cashOperationDTO.getDenomination().entrySet()) {
@@ -97,8 +93,8 @@ public class OperationServiceImpl implements OperationService {
         cashBalanceCurrency.setTotalBalance(totalBalance);
     }
 
-    private void withdrawCash(CashOperationDTO cashOperationDTO) {
-        CashBalanceCurrency cashBalanceCurrency = cashBalance.getBalance().get(cashOperationDTO.getCurrency());
+    private void withdrawCash(CashOperationDTO cashOperationDTO, CashBalanceDTO balanceDTO) {
+        CashBalanceCurrencyDTO cashBalanceCurrency = balanceDTO.getBalance().get(cashOperationDTO.getCurrency());
         BigDecimal totalBalance = cashBalanceCurrency.getTotalBalance();
 
         for (Map.Entry<Integer, Integer> entry : cashOperationDTO.getDenomination().entrySet()) {
@@ -112,18 +108,18 @@ public class OperationServiceImpl implements OperationService {
         cashBalanceCurrency.setTotalBalance(totalBalance);
     }
 
-    private void performValidations(CashOperationDTO cashOperationDTO) {
+    private void performValidations(CashOperationDTO cashOperationDTO, CashBalanceDTO balanceDTO) {
         validateBanknotesDenomination(cashOperationDTO);
         validateNegativeBanknotesCount(cashOperationDTO);
-        validateSufficientBalance(cashOperationDTO);
+        validateSufficientBalance(cashOperationDTO, balanceDTO);
     }
 
-    private void validateSufficientBalance(CashOperationDTO cashOperationDTO) {
+    private void validateSufficientBalance(CashOperationDTO cashOperationDTO, CashBalanceDTO balanceDTO) {
         if (cashOperationDTO.getType().equals(CashOperationType.WITHDRAWAL)) {
             Currency currency = cashOperationDTO.getCurrency();
             Map<Integer, Integer> currentOperationDenominations = cashOperationDTO.getDenomination();
 
-            CashBalanceCurrency cashBalanceCurrency = cashBalance.getBalance().get(currency);
+            CashBalanceCurrencyDTO cashBalanceCurrency = balanceDTO.getBalance().get(currency);
 
             BigDecimal requestedWithdrawalAmount = cashOperationDTO.getAmount();
             BigDecimal banknotesAmount = BigDecimal.ZERO;
@@ -131,7 +127,7 @@ public class OperationServiceImpl implements OperationService {
                 int banknote = entry.getKey();
                 int count = entry.getValue();
 
-               banknotesAmount = banknotesAmount.add(BigDecimal.valueOf(banknote).multiply(BigDecimal.valueOf(count)));
+                banknotesAmount = banknotesAmount.add(BigDecimal.valueOf(banknote).multiply(BigDecimal.valueOf(count)));
 
                 Integer availableCount = cashBalanceCurrency.getDenomination().get(banknote);
                 if (availableCount == null || availableCount < count) {
@@ -147,9 +143,8 @@ public class OperationServiceImpl implements OperationService {
                 throw new IllegalArgumentException(message);
             }
         }
-
-
     }
+
     private void validateNegativeBanknotesCount(CashOperationDTO cashOperationDTO) {
         Map<Integer, Integer> currentOperationDenominations = cashOperationDTO.getDenomination();
 

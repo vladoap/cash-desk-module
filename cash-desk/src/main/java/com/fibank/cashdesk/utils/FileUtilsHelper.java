@@ -5,11 +5,9 @@ import com.fibank.cashdesk.dto.CashOperationDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.Stack;
-
 
 public class FileUtilsHelper  {
 
@@ -20,8 +18,8 @@ public class FileUtilsHelper  {
             .setPrettyPrinting()
             .create();
 
-    public static synchronized void writeCashOperation(CashOperationDTO cashOperationDTO) throws IOException {
-          cashOperationDTO.setLocalDateTime(LocalDateTime.now());
+    public static void writeCashOperation(CashOperationDTO cashOperationDTO) throws IOException {
+        cashOperationDTO.setLocalDateTime(LocalDateTime.now());
         try (FileWriter writer = new FileWriter(CASH_OPERATIONS_FILE, true)) {
             gson.toJson(cashOperationDTO, writer);
             writer.write(System.lineSeparator());
@@ -30,7 +28,7 @@ public class FileUtilsHelper  {
         }
     }
 
-    public static synchronized void writeCashBalance(CashBalanceDTO cashBalanceDTO) throws IOException {
+    public static void writeCashBalance(CashBalanceDTO cashBalanceDTO) throws IOException {
         cashBalanceDTO.setLocalDateTime(LocalDateTime.now());
         try (FileWriter writer = new FileWriter(CASH_BALANCES_FILE, true)) {
             gson.toJson(cashBalanceDTO, writer);
@@ -40,7 +38,7 @@ public class FileUtilsHelper  {
         }
     }
 
-    public static synchronized CashBalanceDTO readLastBalance() throws IOException {
+    public static CashBalanceDTO readLastBalance() throws IOException {
         try (RandomAccessFile file = new RandomAccessFile(CASH_BALANCES_FILE, "r")) {
             long fileLength = file.length();
             if (fileLength == 0) {

@@ -1,5 +1,5 @@
 {
-  "localDateTime": "2024-06-14T04:08:01.0801593",
+  "localDateTime": "2024-06-14T23:47:02.7043532",
   "balance": {
     "EUR": {
       "totalBalance": 2000,
@@ -18,7 +18,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T04:08:05.3319838",
+  "localDateTime": "2024-06-14T23:47:55.3884566",
   "balance": {
     "EUR": {
       "totalBalance": 2000,
@@ -37,7 +37,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T04:08:08.178881",
+  "localDateTime": "2024-06-14T23:48:03.698538",
   "balance": {
     "EUR": {
       "totalBalance": 1500,
@@ -56,7 +56,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T04:08:12.8561094",
+  "localDateTime": "2024-06-14T23:48:07.58132",
   "balance": {
     "EUR": {
       "totalBalance": 1500,
@@ -75,7 +75,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T04:08:15.3122771",
+  "localDateTime": "2024-06-14T23:48:12.0674484",
   "balance": {
     "EUR": {
       "totalBalance": 1700,

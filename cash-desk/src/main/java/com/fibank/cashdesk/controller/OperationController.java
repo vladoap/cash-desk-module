@@ -15,7 +15,7 @@ import java.io.IOException;
 @RequestMapping("/api/v1")
 public class OperationController {
 
-    private OperationServiceImpl operationService;
+    private final OperationServiceImpl operationService;
 
     public OperationController(OperationServiceImpl operationServiceImpl) {
         this.operationService = operationServiceImpl;
@@ -34,7 +34,7 @@ public class OperationController {
     @GetMapping("/cash-balance")
     public ResponseEntity<CashBalanceDTO> getCashBalance(@RequestHeader("FIB-X-AUTH") String apiKey) throws IOException {
         if (!operationService.isApiKeyValid(apiKey)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            throw new InvalidApiKeyException("Invalid API Key provided.");
         }
 
         CashBalanceDTO cashBalanceDTO = operationService.retrieveCashBalance();
