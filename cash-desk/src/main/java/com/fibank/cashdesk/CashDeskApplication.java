@@ -1,0 +1,14 @@
+package com.fibank.cashdesk;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+public class CashDeskApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CashDeskApplication.class, args);
+	}
+
+}

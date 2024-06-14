@@ -1,0 +1,96 @@
+{
+  "localDateTime": "2024-06-14T04:08:01.0801593",
+  "balance": {
+    "EUR": {
+      "totalBalance": 2000,
+      "denomination": {
+        "50": 20,
+        "10": 100
+      }
+    },
+    "BGN": {
+      "totalBalance": 1000,
+      "denomination": {
+        "50": 10,
+        "10": 50
+      }
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-14T04:08:05.3319838",
+  "balance": {
+    "EUR": {
+      "totalBalance": 2000,
+      "denomination": {
+        "50": 20,
+        "10": 100
+      }
+    },
+    "BGN": {
+      "totalBalance": 900,
+      "denomination": {
+        "50": 9,
+        "10": 45
+      }
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-14T04:08:08.178881",
+  "balance": {
+    "EUR": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 10,
+        "10": 100
+      }
+    },
+    "BGN": {
+      "totalBalance": 900,
+      "denomination": {
+        "50": 9,
+        "10": 45
+      }
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-14T04:08:12.8561094",
+  "balance": {
+    "EUR": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 10,
+        "10": 100
+      }
+    },
+    "BGN": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 19,
+        "10": 55
+      }
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-14T04:08:15.3122771",
+  "balance": {
+    "EUR": {
+      "totalBalance": 1700,
+      "denomination": {
+        "50": 12,
+        "10": 100,
+        "20": 5
+      }
+    },
+    "BGN": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 19,
+        "10": 55
+      }
+    }
+  }
+}
