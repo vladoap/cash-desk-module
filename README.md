@@ -9,6 +9,6 @@ Set the `API_KEY` environment variable on your machine.
 
 ## Usage
 
-Import the Postman collection and execute the requests.
+Import the Postman collection and execute the requests consecutively.
 
 
