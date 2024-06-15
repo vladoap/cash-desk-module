@@ -18,6 +18,7 @@ public class BanknotesDenominationsConfig {
         this.denominations = Collections.unmodifiableMap(denominations);
     }
 
+
     public Map<String, Set<Integer>> getDenominations() {
         return denominations;
     }
