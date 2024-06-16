@@ -4,11 +4,11 @@ This project is a Cash Operations Module designed for an internal information sy
 
 ## Environment Variable
 
-Set the `API_KEY` environment variable on your machine.
+Set the `API_KEY` environment variable in env.properties file.
 
 
 ## Usage
 
-Import the Postman collection and execute the requests consecutively.
+Import the Postman collection and execute the requests consecutively - Cash operations.postman_collection.json
 
 
