@@ -2,7 +2,6 @@ package com.fibank.cashdesk.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
-import org.springframework.context.annotation.Configuration;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;

@@ -1,95 +1,95 @@
 {
-  "localDateTime": "2024-06-14T23:47:02.7043532",
+  "localDateTime": "2024-06-16T22:16:29.584",
   "balance": {
-    "EUR": {
-      "totalBalance": 2000,
-      "denomination": {
-        "50": 20,
-        "10": 100
-      }
-    },
     "BGN": {
       "totalBalance": 1000,
       "denomination": {
         "50": 10,
         "10": 50
       }
-    }
-  }
-}
-{
-  "localDateTime": "2024-06-14T23:47:55.3884566",
-  "balance": {
+    },
     "EUR": {
       "totalBalance": 2000,
       "denomination": {
         "50": 20,
         "10": 100
       }
-    },
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-16T22:16:35.672",
+  "balance": {
     "BGN": {
       "totalBalance": 900,
       "denomination": {
         "50": 9,
         "10": 45
       }
+    },
+    "EUR": {
+      "totalBalance": 2000,
+      "denomination": {
+        "50": 20,
+        "10": 100
+      }
     }
   }
 }
 {
-  "localDateTime": "2024-06-14T23:48:03.698538",
+  "localDateTime": "2024-06-16T22:16:43.845",
   "balance": {
-    "EUR": {
-      "totalBalance": 1500,
-      "denomination": {
-        "50": 10,
-        "10": 100
-      }
-    },
     "BGN": {
       "totalBalance": 900,
       "denomination": {
         "50": 9,
         "10": 45
       }
-    }
-  }
-}
-{
-  "localDateTime": "2024-06-14T23:48:07.58132",
-  "balance": {
+    },
     "EUR": {
       "totalBalance": 1500,
       "denomination": {
         "50": 10,
         "10": 100
       }
-    },
+    }
+  }
+}
+{
+  "localDateTime": "2024-06-16T22:16:46.368",
+  "balance": {
     "BGN": {
       "totalBalance": 1500,
       "denomination": {
         "50": 19,
         "10": 55
       }
+    },
+    "EUR": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 10,
+        "10": 100
+      }
     }
   }
 }
 {
-  "localDateTime": "2024-06-14T23:48:12.0674484",
+  "localDateTime": "2024-06-16T22:16:48.236",
   "balance": {
+    "BGN": {
+      "totalBalance": 1500,
+      "denomination": {
+        "50": 19,
+        "10": 55
+      }
+    },
     "EUR": {
       "totalBalance": 1700,
       "denomination": {
         "50": 12,
         "10": 100,
         "20": 5
-      }
-    },
-    "BGN": {
-      "totalBalance": 1500,
-      "denomination": {
-        "50": 19,
-        "10": 55
       }
     }
   }

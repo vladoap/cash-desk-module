@@ -3,11 +3,9 @@ package com.fibank.cashdesk.controller;
 import com.fibank.cashdesk.dto.CashBalanceDTO;
 import com.fibank.cashdesk.dto.CashOperationDTO;
 import com.fibank.cashdesk.exception.InvalidApiKeyException;
-import com.fibank.cashdesk.service.impl.OperationServiceImpl;
-import org.springframework.http.HttpStatus;
+import com.fibank.cashdesk.service.OperationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -15,10 +13,10 @@ import java.io.IOException;
 @RequestMapping("/api/v1")
 public class OperationController {
 
-    private final OperationServiceImpl operationService;
+    private final OperationService operationService;
 
-    public OperationController(OperationServiceImpl operationServiceImpl) {
-        this.operationService = operationServiceImpl;
+    public OperationController(OperationService operationService) {
+        this.operationService = operationService;
     }
 
     @PostMapping("/cash-operation")

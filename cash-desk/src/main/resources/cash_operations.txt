@@ -1,5 +1,5 @@
 {
-  "localDateTime": "2024-06-14T23:47:55.3904525",
+  "localDateTime": "2024-06-16T22:16:35.674",
   "type": "WITHDRAWAL",
   "currency": "BGN",
   "amount": 100,
@@ -9,7 +9,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T23:48:03.7005379",
+  "localDateTime": "2024-06-16T22:16:43.847",
   "type": "WITHDRAWAL",
   "currency": "EUR",
   "amount": 500,
@@ -18,7 +18,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T23:48:07.5823193",
+  "localDateTime": "2024-06-16T22:16:46.369",
   "type": "DEPOSIT",
   "currency": "BGN",
   "amount": 600,
@@ -28,7 +28,7 @@
   }
 }
 {
-  "localDateTime": "2024-06-14T23:48:12.0684467",
+  "localDateTime": "2024-06-16T22:16:48.237",
   "type": "DEPOSIT",
   "currency": "EUR",
   "amount": 200,

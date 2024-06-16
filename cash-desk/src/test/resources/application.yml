@@ -13,8 +13,8 @@ spring:
 cashdesk:
     cash:
         balances:
-            file: src/main/resources/cash_balances.txt
+            file: src/test/resources/cash_balances_test.txt
         operations:
-            file: src/main/resources/cash_operations.txt
+            file: src/test/resources/cash_operations_test.txt
 
 
